@@ -11,9 +11,17 @@ dotenv.config();
 
 const app = express();
 
+const allowedOrigins = ['https://task-management-app-with-kanban-board-youse-ai-frontend.vercel.app'];
+
 app.use(cors({
-  origin: 'https://task-management-app-with-kanban-board-youse-ai-frontend.vercel.app',
-  credentials: true, // This allows credentials like cookies or headers to be sent with the request
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      return callback(new Error('Not allowed by CORS'), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true // If you are handling cookies or authentication
 }));
 
 app.use((req, res, next) => {
