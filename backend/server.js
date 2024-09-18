@@ -6,13 +6,16 @@ import cors from 'cors';
 
 dotenv.config();
 
+
+
+
+const app = express();
+
 app.use(cors({
   origin: 'https://task-management-app-with-kanban-board-youse-ai-frontend.vercel.app',
   credentials: true, // This allows credentials like cookies or headers to be sent with the request
 }));
 
-
-const app = express();
 app.use((req, res, next) => {
 
     res.setHeader('Access-Control-Allow-Origin', '*')
