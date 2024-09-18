@@ -2,8 +2,14 @@ import express from "express";
 import api from './routes/route.js'
 import dotenv from 'dotenv'
 import mongoose from "mongoose";
+const cors = require('cors');
 
 dotenv.config();
+
+app.use(cors({
+  origin: 'https://task-management-app-with-kanban-board-youse-ai-frontend.vercel.app',
+  credentials: true, // This allows credentials like cookies or headers to be sent with the request
+}));
 
 
 const app = express();
